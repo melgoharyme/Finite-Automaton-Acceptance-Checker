@@ -30,6 +30,10 @@ Run the Python script:
 python finite_automaton_checker.py
 ```
 
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Example
 
 ```python
