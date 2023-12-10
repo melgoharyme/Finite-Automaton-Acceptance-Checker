@@ -37,6 +37,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Example
 
 ![Demo Image](https://github.com/mahmoudelgoharyme/Finite-Automaton-Acceptance-Checker/raw/main/demo.png)
-3 -c-> 1
-Final state: ['2', '4']
-The string is rejected for the Finite Automaton. Current state: 1
