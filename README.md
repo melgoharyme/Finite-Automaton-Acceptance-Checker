@@ -2,6 +2,10 @@
 
 This Python program allows users to define a Finite State Machine (FSM) and check the acceptability of strings within the specified FSM. Users can input details such as the number of states, inputs, transitions, and final states.
 
+## Demo
+![Demo Image](https://github.com/mahmoudelgoharyme/Finite-Automaton-Acceptance-Checker/raw/main/demo.png)
+
+
 ## Getting Started
 
 ### Prerequisites
