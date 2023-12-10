@@ -5,10 +5,11 @@ def read_states():
             if num_states < 1:
                 print("Error: Number of states must be 1 or more.")
             else:
-                states = [input(f"Enter the {i+1} state: ") for i in range(num_states)]
+                states = [input(f"Enter the {i + 1} state: ") for i in range(num_states)]
                 return states
         except ValueError:
             print("Error: Please enter a valid integer for the number of states.")
+
 
 def read_inputs():
     while True:
@@ -17,10 +18,11 @@ def read_inputs():
             if num_inputs < 1:
                 print("Error: Number of inputs must be 1 or more.")
             else:
-                inputs = [input(f"Enter the {i+1} input: ") for i in range(num_inputs)]
+                inputs = [input(f"Enter the {i + 1} input: ") for i in range(num_inputs)]
                 return inputs
         except ValueError:
             print("Error: Please enter a valid integer for the number of inputs.")
+
 
 def read_initial_state(states):
     while True:
@@ -30,6 +32,7 @@ def read_initial_state(states):
         else:
             print("Error: Initial state must be one of the entered states. Please try again.")
 
+
 def read_final_states(states):
     while True:
         try:
@@ -37,15 +40,16 @@ def read_final_states(states):
             if num_final_states < 1:
                 print("Error: Number of final states must be 1 or more.")
             elif num_final_states > len(states):
-                print("Error: Number of final states must be equal number of states or less.")
+                print("Error: Number of final states must be equal to or less than the number of states.")
             else:
-                final_states = [input(f"Enter the {i+1} final state: ") for i in range(num_final_states)]
+                final_states = [input(f"Enter the {i + 1} final state: ") for i in range(num_final_states)]
                 if all(state in states for state in final_states):
                     return final_states
                 else:
                     print("Error: Final states must be among the entered states. Please try again.")
         except ValueError:
             print("Error: Please enter a valid integer for the number of final states.")
+
 
 def read_fsm_table(states, inputs):
     fsm_table = {}
@@ -60,44 +64,49 @@ def read_fsm_table(states, inputs):
                     print("Error: Next state must be one of the entered states. Please try again.")
     return fsm_table
 
+
 def print_fsm_table(states, inputs, fsm_table):
-    print(f"{'δ':<5} {'|':<5} {' '.join(inputs):<10}")
+    print(f"{'δ'} {'|'} {' '.join(inputs)}")
     print("-----------------------------------------")
 
     for state in states:
-        print(f"{state:<5} {'|':<5} {' '.join(fsm_table.get((state, inp), '') for inp in inputs):<10}")
+        print(f"{state} {'|'} {' '.join(fsm_table.get((state, inp)) for inp in inputs)}")
 
-def read_string():
-        while True:
-            user_input = input("\nEnter a string or type 'exit' to stop the program or enter 'again' to run the program again: ")
 
-            if user_input.lower() == 'exit':
-                exit()
-            elif user_input.lower() == 'again':
-                break
-            
-            if is_string_acceptable(fsm_table, initial_state, final_states, user_input):
-                print("The string is acceptable for the Finite Automaton.")
+def read_string(initial_state, final_states, fsm_table):
+    while True:
+        user_input = input(
+            "\nEnter a string or type 'exit' to stop the program or enter 'again' to run the program again: ")
+
+        if user_input.lower() == 'exit':
+            exit()
+        elif user_input.lower() == 'again':
+            break
+
+        current_state = initial_state
+
+        for char in user_input:
+            next_state = fsm_table.get((current_state, char), None)
+            if next_state:
+                print(f"{current_state} -{char}-> {next_state}")
+                current_state = next_state
             else:
-                print("The string is not acceptable for the Finite Automaton.")
+                print(f"No transition for {current_state} -{char}->")
+                break
 
-def is_string_acceptable(fsm_table, initial_state, final_states, input_string):
-    current_state = initial_state
-
-    for char in input_string:
-        if (current_state, char) in fsm_table:
-            current_state = fsm_table[(current_state, char)]
+        print(f"Final state: {final_states}")
+        result = current_state in final_states
+        if result:
+            print(f"The string is accepted for the Finite Automaton. Current state: {current_state}")
         else:
-            return False
+            print(f"The string is rejected for the Finite Automaton. Current state: {current_state}")
 
-    return current_state in final_states
 
 if __name__ == "__main__":
-    while True:
-        states = read_states()
-        inputs = read_inputs()
-        initial_state = read_initial_state(states)
-        final_states = read_final_states(states)
-        fsm_table = read_fsm_table(states, inputs)
-        print_fsm_table(states, inputs, fsm_table)
-        read_string()
+    states = read_states()
+    inputs = read_inputs()
+    initial_state = read_initial_state(states)
+    final_states = read_final_states(states)
+    fsm_table = read_fsm_table(states, inputs)
+    print_fsm_table(states, inputs, fsm_table)
+    read_string(initial_state, final_states, fsm_table)
