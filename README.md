@@ -38,23 +38,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ```python
 # Example Input:
-Number of states: 4
-Enter the 1st state: 1
-Enter the 2nd state: 2
-Enter the 3rd state: 3
-Enter the 4th state: 4
+- Number of states: 4
+Enter the 1 state: 1
+Enter the 2 state: 2
+Enter the 3 state: 3
+Enter the 4 state: 4
 
-Number of inputs: 3
-Enter the 1st input: a
-Enter the 2nd input: b
-Enter the 3rd input: c
+- Number of inputs: 3
+Enter the 1 input: a
+Enter the 2 input: b
+Enter the 3 input: c
 
-Enter the initial state: 1
+- Enter the initial state: 1
 
-Number of final states: 2
-Enter the 1st final state: 2
-Enter the 2nd final state: 4
-
+- Number of final states: 2
+Enter the 1 final state: 2
+Enter the 2 final state: 4
 {1, a} = 2
 {1, b} = 3
 {1, c} = 1
@@ -67,25 +66,83 @@ Enter the 2nd final state: 4
 {4, a} = 3
 {4, b} = 3
 {4, c} = 2
+δ | a b c
+-----------------------------------------
+1 | 2 3 1
+2 | 1 3 4
+3 | 2 4 1
+4 | 3 3 2
 
-Result:
-δ     |     a b c
-----------------------------------------
-1     |     2 3 1
-2     |     1 3 4
-3     |     2 4 1
-4     |     3 3 2
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: abc
+1 -a-> 2
+2 -b-> 3
+3 -c-> 1
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 1
+
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: bcacba
+1 -b-> 3
+3 -c-> 1
+1 -a-> 2
+2 -c-> 4
+4 -b-> 3
+3 -a-> 2
+Final state: ['2', '4']
+The string is accepted for the Finite Automaton. Current state: 2
 
 Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: ccca
-The string is acceptable for the Finite Automaton.
+1 -c-> 1
+1 -c-> 1
+1 -c-> 1
+1 -a-> 2
+Final state: ['2', '4']
+The string is accepted for the Finite Automaton. Current state: 2
 
-Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: cbabc
-The string is not acceptable for the Finite Automaton.
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: cbaabc
+1 -c-> 1
+1 -b-> 3
+3 -a-> 2
+2 -a-> 1
+1 -b-> 3
+3 -c-> 1
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 1
 
 Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: b
-The string is not acceptable for the Finite Automaton.
+1 -b-> 3
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 3
 
 Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: bbbb
-The string is acceptable for the Finite Automaton.
+1 -b-> 3
+3 -b-> 4
+4 -b-> 3
+3 -b-> 4
+Final state: ['2', '4']
+The string is accepted for the Finite Automaton. Current state: 4
 
-Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: exit
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: aa
+1 -a-> 2
+2 -a-> 1
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 1
+
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: ab
+1 -a-> 2
+2 -b-> 3
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 3
+
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: aba
+1 -a-> 2
+2 -b-> 3
+3 -a-> 2
+Final state: ['2', '4']
+The string is accepted for the Finite Automaton. Current state: 2
+
+Enter a string or type 'exit' to stop the program or enter 'again' to run the program again: abc
+1 -a-> 2
+2 -b-> 3
+3 -c-> 1
+Final state: ['2', '4']
+The string is rejected for the Finite Automaton. Current state: 1
