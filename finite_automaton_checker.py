@@ -56,7 +56,7 @@ def read_fsm_table(states, inputs):
     for state in states:
         for inp in inputs:
             while True:
-                next_state = input(f"{{{state}, {inp}}} = ")
+                next_state = input(f"{{ {state}, {inp} }} = ")
                 if next_state in states:
                     fsm_table[(state, inp)] = next_state
                     break
@@ -94,12 +94,13 @@ def read_string(initial_state, final_states, fsm_table):
                 print(f"No transition for {current_state} -{char}->")
                 break
 
-        print(f"Final state: {final_states}")
+        print(f"Final state/s: {', '.join(final_states)}")
+        print(f"Current state: {current_state}")
         result = current_state in final_states
         if result:
-            print(f"The string is accepted for the Finite Automaton. Current state: {current_state}")
+            print(f"The string is accepted for the Finite Automaton.")
         else:
-            print(f"The string is rejected for the Finite Automaton. Current state: {current_state}")
+            print(f"The string is rejected for the Finite Automaton.")
 
 
 if __name__ == "__main__":
