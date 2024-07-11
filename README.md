@@ -13,7 +13,7 @@ Make sure you have Python installed. You can download it from [python.org](https
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/mahmoudelgoharyme/Finite-Automaton-Acceptance-Checker.git
+    git clone https://github.com/melgoharyme/Finite-Automaton-Acceptance-Checker.git
     ```
 
 2. Navigate to the project directory:
